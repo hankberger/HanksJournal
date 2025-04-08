@@ -1,0 +1,22 @@
+.welcome-header {
+    text-align: center;
+    padding:  1rem 1rem 2rem .3rem;
+    background-color: #f7f9fc;
+    border-bottom: 2px solid #dde5f0;
+    border-radius: 15px;
+  }
+  
+  .welcome-header h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .welcome-header p {
+    font-size: 1.1rem;
+    color: #363636;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  

@@ -1,0 +1,9 @@
+.HeaderPic{
+    color: #363636;
+}
+
+.circular-image {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
