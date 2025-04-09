@@ -67,20 +67,20 @@ app.get('/api/blog/titles', (req, res) => {
 
 // Route to GET all blog posts
 app.get('/api/blog', (req, res) => {
-    const sql = 'SELECT * FROM posts';
-    
-    db.all(sql, (err, rows) => {
-      if (err) {
-        console.error('Error retrieving posts:', err);
-        return res.status(500).json({ error: 'Could not retrieve posts.' });
-      }
-      if (!rows || rows.length === 0) {
-        return res.status(404).json({ error: 'No posts found.' });
-      }
-      res.json(rows);
-    });
-});
+  const sql = 'SELECT * FROM posts';
   
+  db.all(sql, (err, rows) => {
+    if (err) {
+      console.error('Error retrieving posts:', err);
+      return res.status(500).json({ error: 'Could not retrieve posts.' });
+    }
+    if (!rows || rows.length === 0) {
+      return res.status(404).json({ error: 'No posts found.' });
+    }
+    res.json(rows);
+  });
+});
+
 // Route to GET a blog post by ID
 app.get('/api/blog/:id', (req, res) => {
   const postId = req.params.id;
@@ -95,6 +95,17 @@ app.get('/api/blog/:id', (req, res) => {
       return res.status(404).json({ error: 'Post not found.' });
     }
     res.json(row);
+  });
+});
+
+// New route to download the entire database file
+app.get('/api/download-db', (req, res) => {
+  const filePath = '/app/data/blog.db'; // Path to the database file
+  res.download(filePath, 'blog.db', (err) => {
+    if (err) {
+      console.error('Error downloading the database file:', err);
+      return res.status(500).json({ error: 'Error downloading the database file.' });
+    }
   });
 });
 

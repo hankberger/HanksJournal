@@ -4,6 +4,9 @@
     background-color: #f7f9fc;
     border-bottom: 2px solid #dde5f0;
     border-radius: 15px;
+    -webkit-box-shadow: -7px 9px 29px -20px rgba(0, 0, 0, 0.562);
+    -moz-box-shadow: -7px 9px 29px -20px rgba(0, 0, 0, 0.562);
+    box-shadow: -7px 9px 29px -20px rgba(0, 0, 0, 0.562);
   }
   
   .welcome-header h1 {
