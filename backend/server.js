@@ -33,25 +33,42 @@ db.run(`
   }
 });
 
-// Route to POST a new blog post
 app.post('/api/blog', (req, res) => {
-  const { title, body } = req.body;
-  
-  // Validate request body
+  let { title, body } = req.body;
+
+  // Validate presence
   if (!title || !body) {
     return res.status(400).json({ error: 'Title and body are required.' });
   }
 
+  // Trim whitespace
+  title = title.trim();
+  body = body.trim();
+
+  // Enforce limits
+  if (title.length > 50) {
+    return res.status(400).json({ error: 'Title must be 50 characters or fewer.' });
+  }
+  if (body.length > 300) {
+    return res.status(400).json({ error: 'Body must be 300 characters or fewer.' });
+  }
+
+  // Optional: reject HTML content
+  const htmlTagRegex = /<[^>]+>/g;
+  if (htmlTagRegex.test(title) || htmlTagRegex.test(body)) {
+    return res.status(400).json({ error: 'HTML tags are not allowed in posts.' });
+  }
+
   const sql = 'INSERT INTO posts (title, body) VALUES (?, ?)';
-  db.run(sql, [title, body], function(err) {
+  db.run(sql, [title, body], function (err) {
     if (err) {
       console.error('Error inserting blog post:', err);
       return res.status(500).json({ error: 'Could not create blog post.' });
     }
-    // Return the newly created post's details
     res.status(201).json({ id: this.lastID, title, body });
   });
 });
+
 
 // Route to GET all post titles
 app.get('/api/blog/titles', (req, res) => {

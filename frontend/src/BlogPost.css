@@ -1,5 +1,5 @@
 /* Style for the blog post form container */
-.blog-form {
+.blog-post-form-container {
     border-radius: 8px;
     padding: 1rem 2rem;
     background-color: #8d6f5a;
@@ -8,10 +8,24 @@
     -webkit-box-shadow: -7px 9px 29px -15px rgba(0,0,0,0.75);
     -moz-box-shadow: -7px 9px 29px -15px rgba(0,0,0,0.75);
     box-shadow: -7px 9px 29px -15px rgba(0,0,0,0.75);
+    cursor:pointer;
   }
+
+  .caret-right-fill{
+    height: min-content;
+    animation: trans;
+    transition: transform 0.3s ease;
+  }
+
+  .caret-right-fill.expanded{
+ 
+    transform: rotate(90deg);
+  }
+
+
   
   /* Heading style */
-  .blog-form h2 {
+  .blog-post-form-container h2 {
     text-align: center;
     color:#f7f9fc;
     font-size: 2em;
@@ -20,7 +34,6 @@
     justify-content: center;
     align-items: center;
     gap: 7.5px;
-    margin: 10px 0px 0px;
   }
   
   /* Label styling */
@@ -87,16 +100,53 @@
   .blog-form button:hover {
     background-color: #0056b3;
   }
+
+  .blog-form button:disabled {
+    /* Define a gradient background that blends shades of blue */
+    background: linear-gradient(45deg, #0056b3, #983eff, #ff7b00);
+    /* Increase the size to allow room for animation */
+    background-size: 400% 400%;
+    /* Apply the gradient animation */
+    animation: gradientAnimation 5s ease infinite;
+    
+    /* Additional styling for a nicer disabled look */
+    border: none;
+    color: #ffffff;
+    cursor: not-allowed;
+  }
+  
+  /* Keyframes to animate the background's position, creating a gradient moving effect */
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .char-count{
+    font-size: 1rem;
+    color: #f7f9fc;
+    margin: 0px;
+    padding: 0px;
+  }
+  
   
   /* Success and error messages */
   .blog-form .success {
-    color: green;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
     text-align: center;
     margin-top: 1rem;
   }
   
   .blog-form .error {
-    color: red;
     text-align: center;
     margin-top: 1rem;
   }
