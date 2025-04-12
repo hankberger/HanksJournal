@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 interface Post {
   id: number;
@@ -19,17 +19,17 @@ const PostDetail: React.FC = () => {
       try {
         const res = await fetch(`/api/blog/${id}`);
         if (res.status === 404) {
-          setError('Post not found.');
+          setError("Post not found.");
           setLoading(false);
           return;
         }
         if (!res.ok) {
-          throw new Error('Error fetching post.');
+          throw new Error("Error fetching post.");
         }
         const data: Post = await res.json();
         setPost(data);
       } catch (err: any) {
-        setError(err.message || 'An error occurred');
+        setError(err.message || "An error occurred");
       } finally {
         setLoading(false);
       }
